@@ -1,0 +1,22 @@
+{
+  "name": "aula02-stubs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",  
+  "scripts": {
+    "start": "node --watch src/index.js",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand injectGlobals false test/",
+    "test:dev": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand injectGlobals false --watchAll test/",
+    "test:debug": "set NODE_OPTIONS=--experimental-vm-modules && node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand injectGlobals false --watchAll test/"
+  },
+  "keywords": [],
+  "author": "matheuscassioli",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "v18.17.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
