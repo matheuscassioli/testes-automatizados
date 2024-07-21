@@ -1,4 +1,4 @@
-import { it } from "@jest/globals"
+import { it, expect } from "@jest/globals"
 
 function som(a, b) {
     return a + b + 1
