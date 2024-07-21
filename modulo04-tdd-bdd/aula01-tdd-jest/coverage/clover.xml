@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1721591990752" clover="3.2.0">
-  <project timestamp="1721591990752" name="All files">
+<coverage generated="1721592885848" clover="3.2.0">
+  <project timestamp="1721592885848" name="All files">
     <metrics statements="65" coveredstatements="57" conditionals="14" coveredconditionals="10" methods="1" coveredmethods="1" elements="80" coveredelements="68" complexity="0" loc="65" ncloc="65" packages="1" files="1" classes="1"/>
     <file name="api.js" path="C:\Users\Penso\Desktop\metodo-tajs\modulo04-tdd-bdd\aula01-setup-jest\src\api.js">
       <metrics statements="65" coveredstatements="57" conditionals="14" coveredconditionals="10" methods="1" coveredmethods="1"/>

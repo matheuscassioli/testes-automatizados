@@ -47,7 +47,7 @@ describe('API Users E2E Suite', () => {
     it('Should register a new user with young-adult category', async () => {
         const expectedCategory = 'young-adult'
 
-        //IMPORTANTE : POIS O ANO QUE VEM O TETSE PODE QUEBRAR, QUANDO USAR DATAS, MOCKAR DATA
+        //IMPORTANTE : POIS O ANO QUE VEM O TESTE PODE QUEBRAR, QUANDO USAR DATAS, MOCKAR AS MESMAS 
         jest.useFakeTimers({
             now: new Date('2024-06-21T00:00')
         })
