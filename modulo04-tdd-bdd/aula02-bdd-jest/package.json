@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=3000 && node --watch src/api.js",
-    "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand --injectGlobals false test/",
-    "test:dev": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand --injectGlobals false --watchAll test/",
-    "test:debug": "set NODE_OPTIONS=--experimental-vm-modules && node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --injectGlobals false --watchAll test/"
+    "start": "node --watch src/api.js",
+    "test": "npx @cucumber/cucumber",
+    "test:dev": "npx @cucumber/cucumber --fail-fast --format progress --format html:cucumber-report.html",
+    "test:debug": "npx --inspect-brk @cucumber/cucumber"
   },
   "keywords": [],
   "author": "matheuscassioli",
   "license": "ISC",
   "type": "module",
   "engines": {
-    "node": "v20.11.1"
+    "node": "v20.10.0"
   },
-  "dependencies": {
-    "@cucumber/cucumber": "^10.8.0"
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "sinon": "^17.0.1"
   }
 }
