@@ -10,13 +10,13 @@ export default class View {
 
     initialize() {
         for (const form of this.#forms) {
-            form.addEventListener('submit', this.#onSubmit(form), false)
+            form.addEventListener('submit', this.onSubmit(form), false)
         }
     }
     /**
      * @param {HTMLFormElement} form
      */
-    #onSubmit(form) {
+    onSubmit(form) {
         /**
          * @param {Event} event
          */
@@ -25,6 +25,7 @@ export default class View {
             event.preventDefault()
             event.stopPropagation()
 
+
             if (!form.checkValidity()) {
                 const element = [...form.elements].find(item => !item.checkValidity())
                 element?.focus()
@@ -32,8 +33,8 @@ export default class View {
             }
 
             form.classList.remove(WAS_VALIDATED_CLASS)
-
-            this.#title.focus()
+ 
+            this.#title?.focus()
 
             this.#submitFn({
                 title: form.title.value,
@@ -46,9 +47,7 @@ export default class View {
     /**
      * @param {function} onSubmit
      */
-    configureOnSubmit(onSubmit) {
-        this.#submitFn = onSubmit
-    }
+
 
     /**
     * @param {object[]} items

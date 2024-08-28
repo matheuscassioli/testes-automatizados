@@ -79,7 +79,74 @@ describe('View test suite', () => {
         view.initialize();
         expect(addEventListenerSpy).toHaveBeenCalledWith('submit', expect.any(Function), false);
     });
- 
+    describe('onSubmit', () => {
+        let mockSubmitFn;
+        let mockTitleElement;
+        let mockForm;
+        let mockInvalidElement;
+        let view;
+    
+        beforeEach(() => {
+            mockSubmitFn = jest.fn();
+            mockTitleElement = jest.fn();
+    
+            mockInvalidElement = {
+                checkValidity: jest.fn().mockReturnValue(false),
+                focus: jest.fn()
+            };
+    
+            const mockValidElement = {
+                checkValidity: jest.fn().mockReturnValue(true)
+            };
+    
+            mockForm = {
+                classList: {
+                    add: jest.fn(),
+                    remove: jest.fn(),
+                },
+                checkValidity: jest.fn().mockReturnValue(false),
+                elements: [mockInvalidElement, mockValidElement],
+                title: { value: 'Titulo' },
+                imageUrl: { value: 'http://example.com/image.jpg' },
+                reset: jest.fn()
+            }; // mocando form passando mocks elementos
+    
+            view = new View(mockTitleElement, mockSubmitFn, [mockForm]); //view com elemento mocado
+        });
+    
+    
+        test('should add class (foi validado) and prevent default', () => {
+            const view = new View(mockTitleElement, mockSubmitFn);
+            const eventHandler = view.onSubmit(mockForm);
+            const mockEvent = { preventDefault: jest.fn(), stopPropagation: jest.fn() };
+    
+            eventHandler(mockEvent);
+    
+            expect(mockForm.classList.add).toHaveBeenCalledWith('was-validated');
+            expect(mockEvent.preventDefault).toHaveBeenCalled();
+            expect(mockEvent.stopPropagation).toHaveBeenCalled();
+        });
+    
+        test('should focus on the first invalid form element', () => {
+            mockForm.checkValidity = jest.fn().mockReturnValue(false);
+            mockForm.elements[0].checkValidity = jest.fn().mockReturnValue(false);
+            const view = new View(mockTitleElement, mockSubmitFn);
+            const eventHandler = view.onSubmit(mockForm);
+            const mockEvent = { preventDefault: jest.fn(), stopPropagation: jest.fn() };
+            eventHandler(mockEvent);
+            expect(mockForm.elements[0].focus).toHaveBeenCalled();
+        });
+    
+        test('should call submit function and reset form', () => {
+            mockForm.checkValidity = jest.fn().mockReturnValue(true);
+            const view = new View(mockTitleElement, mockSubmitFn);
+            const eventHandler = view.onSubmit(mockForm);
+            const mockEvent = { preventDefault: jest.fn(), stopPropagation: jest.fn() };
+            eventHandler(mockEvent);
+            expect(mockForm.classList.remove).toHaveBeenCalledWith('was-validated');
+        });
+    });
+
 })
 
 

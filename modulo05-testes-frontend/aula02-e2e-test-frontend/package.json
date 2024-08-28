@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npx browser-sync start -w --server public ",
     "start:test:env": "npx browser-sync start -w --server public --no-open --port 9999 --logLevel silent",
-    "test:unit": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand test/",
-    "test:unit:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --watchAll",
-    "test:unit:debug": "node --experimental-vm-modules --inspect-brk node_modules/jest/bin/jest.js --runInBand --watchAll", 
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand test/",
+    "test:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --watchAll",
+    "test:debug": "node --experimental-vm-modules --inspect-brk node_modules/jest/bin/jest.js --runInBand --watchAll", 
     "cypress:web":"npx cypress open", 
     "cypress:headless":"npx cypress run", 
     "test:e2e":"npx cross-env WEB_SERVER_URL=http://localhost:9999 npx concurrently \"npm run start:test:env\"  \"npm run cypress:headless\"", 
